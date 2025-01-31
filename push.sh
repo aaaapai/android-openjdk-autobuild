@@ -15,7 +15,7 @@ eval $(ssh-agent -s)
 echo "${SSH_KEY_PASSWORD}" | ssh-add ~/.ssh/id_rsa
 
 # echo "克隆仓库"
-git clone git@github.com:Vera-Firefly/android-openjdk-autobuild
+git clone git@github.com:aaaapai/android-openjdk-autobuild
 
 # echo "拉取更新"
 cd android-openjdk-autobuild
@@ -35,6 +35,8 @@ else
         cp -rf JreOutPut/* android-openjdk-autobuild/LatestJre/jre-17/
     elif [ "$JRE_OUTPUT" -eq 21 ]; then
         cp -rf JreOutPut/* android-openjdk-autobuild/LatestJre/jre-21/
+    elif [ "$JRE_OUTPUT" -eq 25 ]; then
+        cp -rf JreOutPut/* android-openjdk-autobuild/LatestJre/jre-25/
     fi
 fi
 
