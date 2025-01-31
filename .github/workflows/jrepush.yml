@@ -2,76 +2,25 @@ name: Push Jre and JSPH
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: "00 6 2,9,16,23 * *"
 
 jobs:
   upload_pojav_jre:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Get Jre 8
-        uses: dawidd6/action-download-artifact@v3
+      - name: Get libjsph 25
+        uses: dawidd6/action-download-artifact@master
         with:
-          workflow: buildjre8.yml
-          path: jre/jre-8
-          workflow_conclusion: success
-          repo: Vera-Firefly/android-openjdk-autobuild
-          branch: main
-          name: jre8-pojav
-      - name: Get Jre 11
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: buildjre11.yml
-          path: jre/jre-11
-          workflow_conclusion: success
-          repo: Vera-Firefly/android-openjdk-autobuild
-          branch: main
-          name: jre11-pojav
-      - name: Get Jre 17
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: buildjre17.yml
-          path: jre/jre-17
-          workflow_conclusion: success
-          repo: Vera-Firefly/android-openjdk-autobuild
-          branch: main
-          name: jre17-pojav
-      - name: Get Jre 21
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: buildjre21.yml
-          path: jre/jre-21
-          workflow_conclusion: success
-          repo: Vera-Firefly/android-openjdk-autobuild
-          branch: main
-          name: jre21-pojav
-      - name: Get libjsph 17
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: buildjre17.yml
+          workflow: buildjre25.yml
           path: jsph
           workflow_conclusion: success
           repo: Vera-Firefly/android-openjdk-autobuild
           branch: main
-          name: jsph-17
-      - name: Get libjsph 21
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: buildjre21.yml
-          path: jsph
-          workflow_conclusion: success
-          repo: Vera-Firefly/android-openjdk-autobuild
-          branch: main
-          name: jsph-21
-      - name: Upload Jre
-        uses: actions/upload-artifact@v4
-        with:
-          name: jre-pojav
-          path: jre/*
+          name: jsph-25
+          
       - name: Upload libjsph
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@main
         with:
           name: libjsph
           path: jsph/*
